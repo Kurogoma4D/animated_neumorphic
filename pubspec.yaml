@@ -1,7 +1,8 @@
 name: animated_neumorphic
-description: A new Flutter package project.
+description: A Flutter package that contains Neumorphismic theme Container that animates implicity by change values. Easy to use, just like Flutter's built-in Animated widget.
 version: 0.1.0
 homepage: https://krgm4d.dev
+repository: https://github.com/Kurogoma4D/animated_neumorphic
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
