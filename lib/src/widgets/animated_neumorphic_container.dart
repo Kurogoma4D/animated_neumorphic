@@ -11,6 +11,8 @@ class AnimatedNeumorphicContainer extends StatelessWidget {
   final double height;
   final Widget child;
   final double radius;
+  final Duration duration;
+  final Curve curve;
 
   const AnimatedNeumorphicContainer({
     Key key,
@@ -20,10 +22,10 @@ class AnimatedNeumorphicContainer extends StatelessWidget {
     this.height,
     this.child,
     this.radius = 8,
+    this.duration = const Duration(milliseconds: 250),
+    this.curve = Curves.easeInOut,
   })  : assert(color != null),
         super(key: key);
-
-  static final _curve = Curves.easeInOut;
 
   @override
   Widget build(BuildContext context) {
@@ -33,8 +35,8 @@ class AnimatedNeumorphicContainer extends StatelessWidget {
 
     return TweenAnimationBuilder(
       tween: _tween,
-      duration: const Duration(milliseconds: 250),
-      curve: _curve,
+      duration: this.duration,
+      curve: this.curve,
       builder: (BuildContext context, double depthValue, Widget child) {
         return Container(
           width: this.width,
