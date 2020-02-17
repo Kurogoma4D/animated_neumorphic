@@ -1,3 +1,6 @@
-## [0.0.1] - TODO: Add release date.
+# Changelog
 
-* TODO: Describe initial release.
+## 0.1.0
+Initial version of this package.
+
+- Add `AnimatedNeumorphicContainer`.
