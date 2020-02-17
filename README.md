@@ -2,6 +2,8 @@
 
 A Flutter package that contains Neumorphismic theme `Container`.
 
+<img src="https://user-images.githubusercontent.com/13596653/74630027-ff686080-519c-11ea-80bc-a88d38446476.gif" height=360 />
+
 ## Getting Started
 In the `pubspec.yaml` of your flutter project, add the following dependency:
 

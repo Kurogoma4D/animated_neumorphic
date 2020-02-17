@@ -4,3 +4,6 @@
 Initial version of this package.
 
 - Add `AnimatedNeumorphicContainer`.
+
+## 0.1.1
+Improved documentation.
