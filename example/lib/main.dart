@@ -14,9 +14,9 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key? key, this.title}) : super(key: key);
 
-  final String title;
+  final String? title;
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -31,7 +31,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(widget.title!),
       ),
       backgroundColor: Color(0xFFF2F2F2),
       body: Center(
@@ -79,9 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 
 class NeumorphicButton extends StatefulWidget {
-  final bool isActive;
-
-  const NeumorphicButton({Key key, this.isActive}) : super(key: key);
+  const NeumorphicButton({Key? key}) : super(key: key);
 
   @override
   _NeumorphicButtonState createState() => _NeumorphicButtonState();

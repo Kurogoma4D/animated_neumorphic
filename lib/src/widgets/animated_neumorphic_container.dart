@@ -12,9 +12,9 @@ import 'package:flutter/widgets.dart';
 class AnimatedNeumorphicContainer extends StatelessWidget {
   final double depth;
   final Color color;
-  final double width;
-  final double height;
-  final Widget child;
+  final double? width;
+  final double? height;
+  final Widget? child;
   final double radius;
   final Duration duration;
   final Curve curve;
@@ -25,8 +25,8 @@ class AnimatedNeumorphicContainer extends StatelessWidget {
   ///
   /// As default, `color` is defined `Color(0xFFF2F2F2)` that is little-grayish white. Because the Neumorphism is composed of base color, light color and dark color (for dropshadow), and this widget will calculate these automatically from the base color.
   const AnimatedNeumorphicContainer({
-    Key key,
-    @required this.depth,
+    Key? key,
+    required this.depth,
     this.color = const Color(0xFFF2F2F2),
     this.width,
     this.height,
@@ -34,8 +34,7 @@ class AnimatedNeumorphicContainer extends StatelessWidget {
     this.radius = 8,
     this.duration = const Duration(milliseconds: 250),
     this.curve = Curves.easeInOut,
-  })  : assert(color != null),
-        assert(depth >= 0.0 && depth <= 1.0),
+  })  : assert(depth >= 0.0 && depth <= 1.0),
         super(key: key);
 
   @override
@@ -48,7 +47,7 @@ class AnimatedNeumorphicContainer extends StatelessWidget {
       tween: _tween,
       duration: this.duration,
       curve: this.curve,
-      builder: (BuildContext context, double depthValue, Widget child) {
+      builder: (BuildContext context, double depthValue, Widget? child) {
         return Container(
           width: this.width,
           height: this.height,
@@ -66,16 +65,16 @@ class AnimatedNeumorphicContainer extends StatelessWidget {
             borderRadius: BorderRadius.circular(this.radius),
             boxShadow: [
               BoxShadow(
-                offset: _lerpedOffsetLight(depthValue),
+                offset: _lerpedOffsetLight(depthValue)!,
                 color: _lightColor,
-                blurRadius: _lerpedBlur(depthValue),
-                spreadRadius: lerpDouble(1, 2, depthValue),
+                blurRadius: _lerpedBlur(depthValue)!,
+                spreadRadius: lerpDouble(1, 2, depthValue)!,
               ),
               BoxShadow(
-                offset: _lerpedOffsetDark(depthValue),
+                offset: _lerpedOffsetDark(depthValue)!,
                 color: _darkColor,
-                blurRadius: _lerpedBlur(depthValue),
-                spreadRadius: lerpDouble(1, 2, depthValue),
+                blurRadius: _lerpedBlur(depthValue)!,
+                spreadRadius: lerpDouble(1, 2, depthValue)!,
               ),
             ],
           ),
@@ -86,19 +85,19 @@ class AnimatedNeumorphicContainer extends StatelessWidget {
     );
   }
 
-  Offset _lerpedOffsetLight(double t) {
+  Offset? _lerpedOffsetLight(double t) {
     final pulled = Offset(
-      this.width != null ? -this.width / 10 : -6,
-      this.height != null ? -this.height / 10 : -6,
+      this.width != null ? -this.width! / 10 : -6,
+      this.height != null ? -this.height! / 10 : -6,
     );
     final pushed = const Offset(-2, -2);
     return Offset.lerp(pushed, pulled, t);
   }
 
-  Offset _lerpedOffsetDark(double t) {
+  Offset? _lerpedOffsetDark(double t) {
     final pulled = Offset(
-      this.width != null ? this.width / 10 : 6,
-      this.height != null ? this.height / 10 : 6,
+      this.width != null ? this.width! / 10 : 6,
+      this.height != null ? this.height! / 10 : 6,
     );
     final pushed = const Offset(2, 2);
     return Offset.lerp(pushed, pulled, t);
@@ -107,16 +106,16 @@ class AnimatedNeumorphicContainer extends StatelessWidget {
   Color _createLightColor() {
     final hsv = HSVColor.fromColor(this.color);
     final newValue = (hsv.value + 0.2).clamp(0, 1.0);
-    return hsv.withValue(newValue).toColor();
+    return hsv.withValue(newValue as double).toColor();
   }
 
   Color _createDarkColor() {
     final hsv = HSVColor.fromColor(this.color).withAlpha(0.4);
     final newValue = (hsv.value - 0.2).clamp(0, 1.0);
-    return hsv.withValue(newValue).toColor();
+    return hsv.withValue(newValue as double).toColor();
   }
 
-  double _lerpedBlur(double t) {
+  double? _lerpedBlur(double t) {
     var metrics = this.width ?? 20;
     metrics = max(metrics, this.height ?? 20);
     return lerpDouble(0.5, metrics / 5, t);
