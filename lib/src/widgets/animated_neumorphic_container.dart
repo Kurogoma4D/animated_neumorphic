@@ -34,8 +34,7 @@ class AnimatedNeumorphicContainer extends StatelessWidget {
     this.radius = 8,
     this.duration = const Duration(milliseconds: 250),
     this.curve = Curves.easeInOut,
-  })  : assert(color != null),
-        assert(depth >= 0.0 && depth <= 1.0),
+  })  : assert(depth >= 0.0 && depth <= 1.0),
         super(key: key);
 
   @override
